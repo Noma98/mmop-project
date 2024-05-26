@@ -4,8 +4,8 @@ export default {
   type: 'document',
   fields: [
     {
-      title: 'Username',
-      name: 'username',
+      title: 'UserId',
+      name: 'userId',
       type: 'string',
     },
     {
@@ -21,7 +21,7 @@ export default {
     {
       title: 'Profile',
       name: 'profile',
-      type: 'image',
+      type: 'string',
     },
     {
       title: 'Projects',
@@ -33,6 +33,7 @@ export default {
           to: [{type: 'project'}],
         },
       ],
+      validation: (Rule) => Rule.unique(),
     },
     {
       title: 'Setting',
@@ -55,17 +56,11 @@ export default {
   ],
   preview: {
     select: {
-      title: 'username',
-      media: 'profile',
-      text: 'introduction',
+      title: 'userId',
+      subtitle: 'email',
     },
     prepare(selection) {
-      const {title, media, text} = selection
-      return {
-        title,
-        media,
-        subtitle: text,
-      }
+      return selection
     },
   },
 }

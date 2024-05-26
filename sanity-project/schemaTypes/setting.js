@@ -40,7 +40,6 @@ export default {
     select: {
       title: 'title',
       subtitle: 'subtitle',
-      media: 'logo',
     },
     prepare(selection) {
       return selection
