@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 
 import '@/app/global.css';
 import AuthContext from '@/app/context/AuthContext';
+import Header from '@/components/home/Header';
 
 const pretendard = localFont({
   src: '../../public/font/PretendardVariable.woff2',
@@ -26,7 +27,8 @@ export default function RootLayout({
     <html lang='en' className={`${pretendard.variable}`}>
       <body className={`${pretendard.className}`}>
         <AuthContext>
-          <main>{children}</main>
+          <Header />
+          <main className='pt-[70px] h-screen'>{children}</main>
         </AuthContext>
       </body>
     </html>
