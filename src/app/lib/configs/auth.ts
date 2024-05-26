@@ -11,12 +11,13 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user: { id, email, image } }) {
+    async signIn({ user: { id, email, image, name } }) {
       if (!email) {
         return false;
       }
       await addMember({
         id,
+        userName: name || '',
         userId: email.split('@')[0],
         email,
         image: image as string,

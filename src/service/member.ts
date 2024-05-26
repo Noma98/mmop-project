@@ -3,16 +3,24 @@ import { addSetting } from './setting';
 
 type OAuthMember = {
   id: string;
+  userName: string;
   userId: string;
   email: string;
   image: string;
 };
-export const addMember = async ({ id, userId, email, image }: OAuthMember) => {
+export const addMember = async ({
+  id,
+  userId,
+  email,
+  userName,
+  image,
+}: OAuthMember) => {
   const newSetting = await addSetting();
   const data = {
     _id: id,
     _type: 'member',
     userId,
+    userName,
     email,
     phoneNum: '',
     profile: image,
