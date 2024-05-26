@@ -55,6 +55,11 @@ export default {
       name: 'type',
       type: 'string',
     },
+    {
+      title: 'AuthorId',
+      name: 'authorId',
+      type: 'string',
+    },
   ],
   preview: {
     select: {
