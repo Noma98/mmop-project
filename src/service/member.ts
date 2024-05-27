@@ -1,4 +1,4 @@
-import { client } from './sanity';
+import { client, urlFor } from './sanity';
 import { addSetting } from './setting';
 
 type OAuthMember = {
@@ -32,4 +32,31 @@ export const addMember = async ({
     skills: [],
   };
   return client.createIfNotExists(data);
+};
+export type FullMember = {
+  userId: string;
+  userName: string;
+  phoneNum: string;
+  email: string;
+  skills: string[];
+  profile: string;
+  setting: {
+    title: string;
+    subtitle: string;
+    logo: string;
+    bgColors: string[];
+    introduction: string;
+  };
+};
+export const getMember = async (userId: string): Promise<FullMember | null> => {
+  const data = await client.fetch(
+    `*[_type=="member"&&userId=="${userId}"][0]{...,setting->}`
+  );
+  return {
+    ...data,
+    setting: {
+      ...data.setting,
+      logo: !data.setting.logo ? '' : urlFor(data.setting.logo),
+    },
+  };
 };
