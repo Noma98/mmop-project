@@ -3,8 +3,8 @@ import localFont from 'next/font/local';
 
 import '@/app/global.css';
 import AuthContext from '@/app/context/AuthContext';
-import Header from '@/components/home/Header';
 import SWRConfigContext from '@/app/context/SWRConfigContext';
+import Header from '@/components/common/Header';
 
 const pretendard = localFont({
   src: '../../public/font/PretendardVariable.woff2',
