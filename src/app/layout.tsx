@@ -5,6 +5,7 @@ import '@/app/global.css';
 import AuthContext from '@/app/context/AuthContext';
 import SWRConfigContext from '@/app/context/SWRConfigContext';
 import Header from '@/components/common/Header';
+import Footer from '@/components/common/Footer';
 
 const pretendard = localFont({
   src: '../../public/font/PretendardVariable.woff2',
@@ -30,7 +31,8 @@ export default function RootLayout({
         <AuthContext>
           <SWRConfigContext>
             <Header />
-            <main className='pt-[70px] h-screen'>{children}</main>
+            <main className='pt-[70px]'>{children}</main>
+            <Footer />
           </SWRConfigContext>
         </AuthContext>
       </body>
