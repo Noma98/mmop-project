@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import '@/app/global.css';
 import AuthContext from '@/app/context/AuthContext';
 import Header from '@/components/home/Header';
+import SWRConfigContext from '@/app/context/SWRConfigContext';
 
 const pretendard = localFont({
   src: '../../public/font/PretendardVariable.woff2',
@@ -27,8 +28,10 @@ export default function RootLayout({
     <html lang='en' className={`${pretendard.variable}`}>
       <body className={`${pretendard.className}`}>
         <AuthContext>
-          <Header />
-          <main className='pt-[70px] h-screen'>{children}</main>
+          <SWRConfigContext>
+            <Header />
+            <main className='pt-[70px] h-screen'>{children}</main>
+          </SWRConfigContext>
         </AuthContext>
       </body>
     </html>
