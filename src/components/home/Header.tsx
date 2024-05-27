@@ -42,8 +42,9 @@ export default function Header() {
               <Image
                 alt='logo'
                 src={data.setting.logo}
-                width={80}
+                width={70}
                 height={36}
+                className='object-contain'
                 priority
               />
             )}
@@ -53,7 +54,13 @@ export default function Header() {
             </h1>
           </>
         ) : (
-          <Image alt='logo' src={LogoImg} width={80} height={36} />
+          <Image
+            alt='logo'
+            src={LogoImg}
+            width={70}
+            height={36}
+            className='object-contain'
+          />
         )}
       </div>
       <div className='flex items-center'>

@@ -14,9 +14,9 @@ export default function TopSection() {
         </div>
         <Image
           src={Banner}
-          alt='make_page'
-          width={400}
-          className='opacity-50 hidden lg:block'
+          alt='creating page'
+          className='w-[400px] h-auto opacity-50 hidden lg:block object-contain'
+          priority
         />
       </div>
       <Wave />
