@@ -15,7 +15,7 @@ export const addMember = async ({
   userName,
   image,
 }: OAuthMember) => {
-  const newSetting = await addSetting();
+  const newSetting = await addSetting(id);
   const data = {
     _id: id,
     _type: 'member',
