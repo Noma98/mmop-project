@@ -34,7 +34,7 @@ export default function Header() {
   };
 
   return (
-    <header className='px-8 w-full h-[70px] shadow-md bg-white/90 fixed flex justify-between items-center'>
+    <header className='px-8 w-full h-[70px] shadow-md bg-white/90 fixed flex justify-between items-center z-20'>
       <div className='flex items-center gap-4'>
         {data ? (
           <>
@@ -48,7 +48,7 @@ export default function Header() {
                 priority
               />
             )}
-            <h1 className='font-bold text-lg'>
+            <h1 className='font-extrabold text-xl'>
               {data.setting.title ||
                 (!data.setting.logo && `${userId}'s portfolio`)}
             </h1>

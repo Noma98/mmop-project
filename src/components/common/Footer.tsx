@@ -5,7 +5,7 @@ import LogoImg from 'public/image/logo.png';
 
 export default function Footer() {
   return (
-    <footer className='w-full flex justify-center items-center p-8 gap-4 absolute bottom-0'>
+    <footer className='w-full flex justify-center items-center p-8 gap-4'>
       <Link href='/'>
         <Image
           alt='logo'
