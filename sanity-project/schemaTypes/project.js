@@ -46,8 +46,18 @@ export default {
       ],
     },
     {
-      title: 'Link',
-      name: 'link',
+      title: 'WebLink',
+      name: 'webLink',
+      type: 'string',
+    },
+    {
+      title: 'StoreLink',
+      name: 'storeLink',
+      type: 'string',
+    },
+    {
+      title: 'GithubLink',
+      name: 'githubLink',
       type: 'string',
     },
     {
@@ -59,6 +69,16 @@ export default {
       title: 'AuthorId',
       name: 'authorId',
       type: 'string',
+    },
+    {
+      title: 'Achievements',
+      name: 'achievements',
+      type: 'array',
+      of: [
+        {
+          type: 'string',
+        },
+      ],
     },
   ],
   preview: {
