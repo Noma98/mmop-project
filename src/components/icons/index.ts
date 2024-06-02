@@ -5,3 +5,7 @@ export { default as BusinessIcon } from './BusinessIcon';
 export { default as GameIcon } from './GameIcon';
 export { default as GithubIcon } from './GithubIcon';
 export { default as FilterIcon } from './FilterIcon';
+export { default as CancelIcon } from './CancelIcon';
+export { default as AlertIcon } from './AlertIcon';
+export { default as PictureIcon } from './PictureIcon';
+export { default as PlusIcon } from './PlusIcon';
