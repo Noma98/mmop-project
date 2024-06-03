@@ -13,3 +13,7 @@ const builder = imageUrlBuilder(client);
 export const urlFor = (source: SanityImageSource) => {
   return builder.image(source).width(800).url();
 };
+export const extractAssetIdFromUrl = (url: string) => {
+  const match = url.match(/images\/[^/]+\/[^/]+\/([^?/]+)/);
+  return match ? `image-${match[1]}`.replace('.', '-') : null;
+};
