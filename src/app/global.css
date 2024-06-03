@@ -28,3 +28,6 @@ body {
 .custom-shape-divider-bottom-1716535680 .shape-fill {
   fill: #ffffff;
 }
+.rdrDefinedRangesWrapper {
+  display: none;
+}
