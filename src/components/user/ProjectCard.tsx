@@ -28,21 +28,26 @@ export default function ProjectCard({ data }: Props) {
     type,
   } = data;
   const linkData = [
-    { text: 'Web Link', link: webLink, color: 'red-500', icon: <WebIcon /> },
+    { text: 'Web Link', link: webLink, style: 'bg-red-500', icon: <WebIcon /> },
     {
       text: 'Store Link',
       link: storeLink,
-      color: '[#1C95F1]',
+      style: 'bg-sky-500',
       icon: <StoreIcon />,
     },
-    { text: 'Github Link', link: githubLink, icon: <GithubIcon /> },
+    {
+      text: 'Github Link',
+      link: githubLink,
+      icon: <GithubIcon />,
+      style: 'bg-neutral-800',
+    },
   ];
   return (
-    <article className='flex flex-col lg:flex-row p-10 round relative rounded-xl gap-10 m-8 shadow-md border-[1px] border-neutral-200 bg-white z-10'>
+    <article className='flex flex-col lg:flex-row p-10 round relative rounded-xl gap-10 shadow-md border-[1px] border-neutral-200 bg-white z-10'>
       <Label
         text={type}
         icon={type === 'business' ? <BusinessIcon /> : <GameIcon />}
-        style='absolute top-[-20px] left-[20px]'
+        style={`absolute top-[-20px] left-[20px] bg-neutral-800`}
       />
       <div className={`flex flex-col gap-2 lg:hidden`}>
         <Period startDate={startDate} endDate={endDate} />
