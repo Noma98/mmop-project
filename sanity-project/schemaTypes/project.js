@@ -34,6 +34,18 @@ export default {
       type: 'date',
     },
     {
+      title: 'Years',
+      name: 'years',
+      type: 'array',
+      of: [
+        {
+          title: 'Year',
+          name: 'year',
+          type: 'string',
+        },
+      ],
+    },
+    {
       title: 'Skills',
       name: 'skills',
       type: 'array',

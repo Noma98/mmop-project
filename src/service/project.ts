@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { client, extractAssetIdFromUrl, urlFor } from '@/service/sanity';
+import { getYears } from '@/utils/filter';
 
 export type Project = {
   id: string;
@@ -23,10 +24,20 @@ export type RawProject = Omit<Project, 'id'> & {
   images: SanityImageSource[];
   _id: string;
 };
-export const getProjects = async (userId: string) => {
-  const data = await client.fetch(
-    `*[_type=="project"&&authorId=="${userId}"]|order("endDate" desc)`
-  );
+export const getProjects = async (
+  userId: string,
+  year: string,
+  type: string
+) => {
+  let query = `*[_type=="project"&&authorId=="${userId}"`;
+  if (year !== 'ALL') {
+    query += `&&"${year}" in years`;
+  }
+  if (type !== 'ALL') {
+    query += `&&type=="${type}"`;
+  }
+  query += `]|order(endDate desc)`;
+  const data = await client.fetch(query);
   return data.map((item: RawProject) => ({
     ...item,
     id: item._id,
@@ -73,6 +84,7 @@ export const createProjects = async ({
     })),
     startDate: format(new Date(startDate), 'yyyy-MM-dd'),
     endDate: format(new Date(endDate), 'yyyy-MM-dd'),
+    years: getYears(startDate, endDate),
     type,
     authorId,
   });

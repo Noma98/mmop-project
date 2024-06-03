@@ -6,8 +6,12 @@ type Context = {
     userId: string;
   };
 };
-export async function GET(_: NextRequest, context: Context) {
-  return getProjects(context.params.userId).then((data) =>
+export async function GET(req: NextRequest, context: Context) {
+  const { searchParams } = new URL(req.url);
+  const year = searchParams.get('year') || 'ALL';
+  const type = searchParams.get('type') || 'ALL';
+
+  return getProjects(context.params.userId, year, type).then((data) =>
     NextResponse.json(data)
   );
 }

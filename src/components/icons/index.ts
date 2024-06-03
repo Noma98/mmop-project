@@ -9,3 +9,6 @@ export { default as CancelIcon } from './CancelIcon';
 export { default as AlertIcon } from './AlertIcon';
 export { default as PictureIcon } from './PictureIcon';
 export { default as PlusIcon } from './PlusIcon';
+export { default as ChevronRightIcon } from './ChevronRightIcon';
+export { default as ChevronLeftIcon } from './ChevronLeftIcon';
+export { default as NoFilterIcon } from './NoFilterIcon';
