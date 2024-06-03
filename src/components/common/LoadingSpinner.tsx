@@ -9,5 +9,9 @@ export default function LoadingSpinner({
   color = '#4f90c2',
   size = '10px',
 }: Props) {
-  return <PulseLoader color={color} size={size} />;
+  return (
+    <section className='w-full h-full flex justify-center items-center py-40'>
+      <PulseLoader color={color} size={size} />
+    </section>
+  );
 }
