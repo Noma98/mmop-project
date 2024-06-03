@@ -19,7 +19,7 @@ export default function Header() {
   const { data } = useSWR<FullMember>(userId ? `/api/member/${userId}` : null);
 
   useEffect(() => {
-    setUserId(pathname === '/' ? '' : pathname.slice(4));
+    setUserId(pathname === '/' ? '' : pathname.slice(4).split('/')[0]);
   }, [pathname]);
 
   const onSignIn = () => {
@@ -37,7 +37,7 @@ export default function Header() {
     <header className='px-8 w-full h-[70px] shadow-md bg-white/90 fixed flex justify-between items-center z-20'>
       <div className='flex items-center gap-4'>
         {data ? (
-          <>
+          <Link href={`/id/${userId}`} className='cursor-pointer'>
             {data.setting.logo && (
               <Image
                 alt='logo'
@@ -52,15 +52,17 @@ export default function Header() {
               {data.setting.title ||
                 (!data.setting.logo && `${userId}'s portfolio`)}
             </h1>
-          </>
+          </Link>
         ) : (
-          <Image
-            alt='logo'
-            src={LogoImg}
-            width={100}
-            height={52}
-            className='object-contain'
-          />
+          <Link href='/'>
+            <Image
+              alt='logo'
+              src={LogoImg}
+              width={100}
+              height={52}
+              className='object-contain'
+            />
+          </Link>
         )}
       </div>
       <div className='flex items-center'>
@@ -89,10 +91,10 @@ export default function Header() {
         )}
         {session?.user?.userId === userId && (
           <Link
-            href={`/id/${userId}/edit`}
+            href={`/id/${session?.user?.userId}/setting`}
             className='border-[1px] py-2 px-4 font-bold rounded-md active:bg-neutral-50'
           >
-            Edit Portfolio
+            Setting
           </Link>
         )}
       </div>
