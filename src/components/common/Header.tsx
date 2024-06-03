@@ -37,13 +37,16 @@ export default function Header() {
     <header className='px-8 w-full h-[70px] shadow-md bg-white/90 fixed flex justify-between items-center z-20'>
       <div className='flex items-center gap-4'>
         {data ? (
-          <Link href={`/id/${userId}`} className='cursor-pointer'>
+          <Link
+            href={`/id/${userId}`}
+            className='cursor-pointer flex items-center gap-2'
+          >
             {data.setting.logo && (
               <Image
                 alt='logo'
                 src={data.setting.logo}
-                width={52}
-                height={52}
+                width={28}
+                height={28}
                 className='object-contain'
                 priority
               />
