@@ -13,7 +13,7 @@ export type Project = {
   webLink: string;
   storeLink: string;
   githubLink: string;
-  achievements: string[];
+  achievements: Array<{ value: string }>;
 };
 export const getProjects = async (userId: string) => {
   const data = await client.fetch(`*[_type=="project"&&authorId=="${userId}"]`);

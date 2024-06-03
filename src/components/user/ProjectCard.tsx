@@ -61,7 +61,7 @@ export default function ProjectCard({ data }: Props) {
               className='list-square translate-x-4 text-neutral-700'
               key={idx}
             >
-              {item}
+              {item.value}
             </li>
           ))}
         </ul>

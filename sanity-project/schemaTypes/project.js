@@ -76,7 +76,16 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'string',
+          type: 'object',
+          title: 'Achievement',
+          name: 'achievement',
+          fields: [
+            {
+              name: 'value',
+              type: 'string',
+              title: 'Value',
+            },
+          ],
         },
       ],
     },
