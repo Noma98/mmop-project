@@ -11,6 +11,17 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async session({ session, token }) {
+      const user = session?.user;
+      if (user) {
+        session.user = {
+          ...user,
+          userId: session.user?.email?.split('@')[0] || '',
+          id: token.id as string,
+        };
+      }
+      return session;
+    },
     async signIn({ user: { id, email, image, name } }) {
       if (!email) {
         return false;
@@ -23,10 +34,6 @@ const authOptions: NextAuthOptions = {
         image: image as string,
       });
       return true;
-    },
-    async session({ session }) {
-      session.user.userId = session.user?.email?.split('@')[0] || '';
-      return session;
     },
   },
 };

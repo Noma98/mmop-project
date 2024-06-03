@@ -1,7 +1,7 @@
 import { client, urlFor } from './sanity';
 import { addSetting } from './setting';
 
-type OAuthMember = {
+export type OAuthMember = {
   id: string;
   userName: string;
   userId: string;
