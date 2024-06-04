@@ -1,31 +1,39 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { getServerSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
+import useSWR from 'swr';
 
-import authOptions from '@/app/lib/configs/auth';
-import { OAuthMember } from '@/service/member';
+import { FullMember, OAuthMember } from '@/service/member';
+import PortfolioInfoForm from '@/components/setting/PortfolioInfoForm';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
-export default async function SettingPage() {
-  const session = await getServerSession(authOptions);
-  const { userId } = session?.user as OAuthMember;
+export default function SettingPage() {
+  const { data: session } = useSession();
+  const user = session?.user as OAuthMember;
+  const { data, isLoading } = useSWR<FullMember>(`/api/member/${user?.userId}`);
+
   const linkStyle =
-    'py-4 px-8 border-[1px] rounded-md  w-80 bg-white font-bold text-center border-black';
+    'py-4 border-[1px] rounded-md flex-1 block bg-white font-bold text-center border-black';
   return (
-    <section className='h-[640px] bg-slate-50 flex justify-center items-center'>
-      <div className='flex flex-col gap-4'>
+    <section className='bg-slate-50 flex flex-col items-center p-12'>
+      <div className='flex gap-4 w-full max-w-[660px]'>
         <Link
-          href={`/id/${userId}/create`}
-          className={`${linkStyle} text-gray-800`}
-        >
-          Register New Project
-        </Link>
-        <Link
-          href={`/id/${userId}/edit`}
+          href={`/id/${user?.userId}/create`}
           className={`${linkStyle} bg-black text-white`}
         >
-          Edit Portfolio
+          + Register New Project
+        </Link>
+        <Link
+          href={`/id/${user?.userId}/edit`}
+          className={`${linkStyle} text-gray-800 `}
+        >
+          Modify Existing Projects
         </Link>
       </div>
+      {isLoading && <LoadingSpinner />}
+      {data && <PortfolioInfoForm data={data.setting} userId={user.userId} />}
     </section>
   );
 }
