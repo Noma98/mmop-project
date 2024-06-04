@@ -44,7 +44,10 @@ export type FullMember = {
     title: string;
     subtitle: string;
     logo: string;
-    bgColors: string[];
+    bgColors: {
+      left: string;
+      right: string;
+    };
     introduction: string;
   };
 };

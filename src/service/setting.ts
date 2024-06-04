@@ -7,7 +7,10 @@ export const addSetting = (id: string) => {
     title: '',
     subtitle: '',
     introduction: '',
-    bgColors: [],
+    bgColors: {
+      left: '#ffffff',
+      right: '#ffffff',
+    },
     logo: '',
   });
 };

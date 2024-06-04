@@ -21,11 +21,16 @@ export default {
     {
       title: 'BgColors',
       name: 'bgColors',
-      type: 'array',
-      of: [
+      type: 'object',
+      fields: [
         {
-          title: 'BgColor',
-          name: 'bgColor',
+          name: 'left',
+          title: 'Left',
+          type: 'string',
+        },
+        {
+          name: 'right',
+          title: 'Right',
           type: 'string',
         },
       ],
