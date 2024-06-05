@@ -9,10 +9,9 @@ export const addSetting = (id: string) => {
     subtitle: '',
     introduction: '',
     bgColors: {
-      left: '#ffffff',
-      right: '#ffffff',
+      left: '#C9E8F2',
+      right: '#DBEAFE',
     },
-    logo: '',
   });
 };
 

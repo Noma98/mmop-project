@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import { FullMember, OAuthMember } from '@/service/member';
 import PortfolioInfoForm from '@/components/setting/PortfolioInfoForm';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import UserInfoForm from '@/components/setting/UserInfoForm';
 
 export default function SettingPage() {
   const { data: session } = useSession();
@@ -34,6 +35,7 @@ export default function SettingPage() {
       </div>
       {isLoading && <LoadingSpinner />}
       {data && <PortfolioInfoForm data={data.setting} userId={user.userId} />}
+      {data && <UserInfoForm data={data} userId={user.userId} />}
     </section>
   );
 }

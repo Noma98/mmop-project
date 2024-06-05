@@ -1,4 +1,4 @@
-import { client, urlFor } from './sanity';
+import { client, extractAssetIdFromUrl, urlFor } from './sanity';
 import { addSetting } from './setting';
 
 export type OAuthMember = {
@@ -23,7 +23,7 @@ export const addMember = async ({
     userName,
     email,
     phoneNum: '',
-    profile: image,
+    googleProfile: image,
     projects: [],
     setting: {
       _ref: newSetting._id,
@@ -40,6 +40,7 @@ export type FullMember = {
   email: string;
   skills: string[];
   profile: string;
+  googleProfile: string;
   setting: {
     title: string;
     subtitle: string;
@@ -62,4 +63,29 @@ export const getMember = async (userId: string): Promise<FullMember | null> => {
       logo: !data.setting.logo ? '' : urlFor(data.setting.logo),
     },
   };
+};
+type FormMember = FullMember & { _id: string };
+export const updateMember = async (data: FormMember, file: File | null) => {
+  const { _id, userName, phoneNum, skills, profile } = data;
+  return client
+    .patch(_id)
+    .set({
+      profile:
+        !profile && !file
+          ? ''
+          : {
+              _type: 'image',
+              asset: {
+                _type: 'reference',
+                _ref: file
+                  ? (await client.assets.upload('image', file))._id
+                  : extractAssetIdFromUrl(profile),
+              },
+            },
+      _type: 'member',
+      userName,
+      phoneNum,
+      skills,
+    })
+    .commit();
 };

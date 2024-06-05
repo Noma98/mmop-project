@@ -26,6 +26,12 @@ export default {
     {
       title: 'Profile',
       name: 'profile',
+      type: 'image',
+      validation: (Rule) => Rule.optional(),
+    },
+    {
+      title: 'GoogleProfile',
+      name: 'googleProfile',
       type: 'string',
     },
     {
