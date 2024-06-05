@@ -60,60 +60,54 @@ export default function PortfolioInfoForm({ data, userId }: Props) {
   };
 
   return (
-    <form className='rounded-xl bg-white p-8 mt-12 w-full max-w-[660px] z-10'>
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
-          <h3 className='font-bold text-xl'>Portfolio Information</h3>
-          <label className={labelCommonStyle}>Title</label>
-          <input {...register('title')} className={inputCommonStyle} />
-          <label className={labelCommonStyle}>SubTitle</label>
-          <input {...register('subtitle')} className={inputCommonStyle} />
-          <label className={labelCommonStyle}>Introduction</label>
-          <textarea
-            {...register('introduction')}
-            className={`${inputCommonStyle} resize-none h-32`}
+    <section className='rounded-xl bg-white p-8 mt-12 w-full max-w-[660px] z-10'>
+      <h3 className='font-bold text-xl'>Portfolio Information</h3>
+      <label className={labelCommonStyle}>Title</label>
+      <input {...register('title')} className={inputCommonStyle} />
+      <label className={labelCommonStyle}>SubTitle</label>
+      <input {...register('subtitle')} className={inputCommonStyle} />
+      <label className={labelCommonStyle}>Introduction</label>
+      <textarea
+        {...register('introduction')}
+        className={`${inputCommonStyle} resize-none h-32`}
+      />
+      <label className={labelCommonStyle}>Logo</label>
+      <input
+        {...register('logo')}
+        className='hidden'
+        type='file'
+        ref={fileInputRef}
+        accept='image/*'
+        onChange={onChange}
+      />
+      <div
+        className='w-40 h-40 rounded-md border-[1px] flex justify-center items-center bg-slate-50 cursor-pointer relative'
+        onClick={onClickImageSelector}
+      >
+        {data.logo || formData.logoFileBlob ? (
+          <Image
+            src={
+              formData.logoFileBlob
+                ? URL.createObjectURL(formData.logoFileBlob)
+                : data.logo
+            }
+            alt='logo'
+            width={160}
+            height={160}
+            className='rounded-md'
           />
-          <label className={labelCommonStyle}>Logo</label>
-          <input
-            {...register('logo')}
-            className='hidden'
-            type='file'
-            ref={fileInputRef}
-            accept='image/*'
-            onChange={onChange}
-          />
-          <div
-            className='w-40 h-40 rounded-md border-[1px] flex justify-center items-center bg-slate-50 cursor-pointer relative'
-            onClick={onClickImageSelector}
-          >
-            {data.logo ? (
-              <Image
-                src={
-                  formData.logoFileBlob
-                    ? URL.createObjectURL(formData.logoFileBlob)
-                    : data.logo
-                }
-                alt='logo'
-                width={160}
-                height={160}
-                className='rounded-md'
-              />
-            ) : (
-              <PictureIcon />
-            )}
-          </div>
-          <label className={labelCommonStyle}>Background Color</label>
-          <BgColorSelector colors={formData.bgColors} setValue={setValue} />
-          <button
-            className='p-4 rounded-lg bg-neutral-800 text-white font-bold mt-8 w-full hover:opacity-70'
-            onClick={handleSubmit(onSubmit)}
-          >
-            Save
-          </button>
-        </>
-      )}
-    </form>
+        ) : (
+          <PictureIcon />
+        )}
+      </div>
+      <label className={labelCommonStyle}>Background Color</label>
+      <BgColorSelector colors={formData.bgColors} setValue={setValue} />
+      <button
+        className='p-4 rounded-lg bg-neutral-800 text-white font-bold mt-8 w-full hover:opacity-70 h-16'
+        onClick={handleSubmit(onSubmit)}
+      >
+        {isLoading ? <LoadingSpinner isPadding={false} /> : `Save`}
+      </button>
+    </section>
   );
 }

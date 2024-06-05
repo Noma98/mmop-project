@@ -13,6 +13,7 @@ import Filter from '@/components/user/Filter';
 import Wave from '@/components/home/Wave';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { NoFilterIcon } from '@/components/icons';
+import { FullMember } from '@/service/member';
 
 type Props = {
   params: {
@@ -24,6 +25,7 @@ export default function UserPage({ params: { userId } }: Props) {
   const [activeType, setActiveType] = useState('ALL');
   const [activeFilter, setActiveFilter] = useState('year');
 
+  const { data: userInfo } = useSWR<FullMember>(`/api/member/${userId}`);
   const {
     data: projects,
     isLoading,
@@ -39,7 +41,14 @@ export default function UserPage({ params: { userId } }: Props) {
   }, [activeType, activeYear]);
 
   return (
-    <section className='bg-gradient-to-r from-[#C9E8F2] to-blue-100 pb-20 relative pt-10 px-16 min-h-[680px] flex justify-center items-center'>
+    <section
+      style={{
+        background: `linear-gradient(to right, ${
+          userInfo?.setting?.bgColors?.left || '#DCEFF5'
+        }, ${userInfo?.setting?.bgColors?.right || '#DCE5FD'})`,
+      }}
+      className={`pb-20 relative pt-10 px-16 min-h-[680px] flex justify-center items-center`}
+    >
       {isLoading && <LoadingSpinner />}
       {projects && (
         <div className='flex flex-col gap-12 w-full'>

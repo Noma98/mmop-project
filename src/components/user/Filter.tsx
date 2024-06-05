@@ -65,7 +65,7 @@ export default function Filter({
           onClick={() => setActiveFilter('type')}
         />
       </div>
-      <div className='flex gap-2 rounded-r-xl rounded-b-xl bg-white/70 p-6 shadow-sm'>
+      <div className='flex gap-2 rounded-r-xl rounded-b-xl bg-white/70 p-6 shadow-sm min-w-[372px]'>
         {activeFilter === 'year'
           ? yearData.map((year, idx) => (
               <button
