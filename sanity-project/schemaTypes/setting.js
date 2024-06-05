@@ -39,6 +39,7 @@ export default {
       title: 'Logo',
       name: 'logo',
       type: 'image',
+      validation: (Rule) => Rule.optional(),
     },
   ],
   preview: {
