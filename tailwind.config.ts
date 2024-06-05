@@ -10,6 +10,11 @@ const config: Config = {
     listStyleType: {
       square: 'square',
     },
+    extend: {
+      fontFamily: {
+        flower: ['Indie Flower', 'cursive'],
+      },
+    },
   },
   plugins: [],
 };
