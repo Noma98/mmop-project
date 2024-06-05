@@ -31,7 +31,7 @@ export const getProjects = async (
 ) => {
   let query = `*[_type=="project"&&authorId=="${userId}"`;
   if (year !== 'ALL') {
-    query += `&&"${year}" in years`;
+    query += `&&${year} in years`;
   }
   if (type !== 'ALL') {
     query += `&&type=="${type}"`;

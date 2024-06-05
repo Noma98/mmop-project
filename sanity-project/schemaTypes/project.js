@@ -41,7 +41,7 @@ export default {
         {
           title: 'Year',
           name: 'year',
-          type: 'string',
+          type: 'number',
         },
       ],
     },
