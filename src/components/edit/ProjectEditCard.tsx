@@ -21,6 +21,7 @@ import FieldError from '@/components/common/FieldError';
 import ImageUploader from '@/components/edit/ImageUploader';
 import ImageViewer from '@/components/edit/ImageViewer';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import SkillForm from '@/components/common/SkillForm';
 
 const inputCommonStyle =
   'list-square text-neutral-700 border-[1px] py-2 px-4 block w-full rounded-md mb-2 outline-sky-500';
@@ -78,7 +79,6 @@ export default function ProjectEditCard({ data }: Props) {
   });
   const formData = watch();
 
-  const skillInputRef = useRef(null);
   const linkData = [
     {
       name: 'webLink',
@@ -102,28 +102,7 @@ export default function ProjectEditCard({ data }: Props) {
       icon: <GithubIcon />,
     },
   ];
-  const addSkill: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
 
-    if (!skillInputRef.current) {
-      return;
-    }
-    let { value } = skillInputRef.current as HTMLInputElement;
-    if (formData.skills.includes(value)) {
-      alert('This tag is already registered.');
-      return;
-    }
-    setValue('skills', [value, ...formData.skills]);
-    (skillInputRef.current as HTMLInputElement).value = '';
-  };
-  const deleteSkill: MouseEventHandler<HTMLLIElement> = (e) => {
-    setValue(
-      'skills',
-      formData.skills.filter(
-        (v) => v !== (e.target as HTMLLIElement).textContent
-      )
-    );
-  };
   const updateImageUrls = (urls: string[]) => {
     setValue('imageUrls', urls);
   };
@@ -347,31 +326,7 @@ export default function ProjectEditCard({ data }: Props) {
             </ul>
             <h3 className='font-bold mb-2 mt-4'>Skill tags</h3>
           </form>
-          <form onSubmit={addSkill}>
-            <input
-              className='py-2 px-4 border-[1px] rounded-md outline-sky-500 w-full max-w-[500px]'
-              ref={skillInputRef}
-              placeholder='Type and press enter'
-            />
-          </form>
-          <ul className='flex gap-2 flex-wrap items-center mt-4'>
-            {formData.skills.map((skill) =>
-              skill ? (
-                <li
-                  key={skill}
-                  className='py-1 px-2 rounded-lg text-sm bg-neutral-500 text-white font-bold hover:scale-105 hover:bg-blue-400 transition-all duration-100'
-                  onClick={deleteSkill}
-                >
-                  {skill}
-                </li>
-              ) : (
-                <></>
-              )
-            )}
-          </ul>
-          <p className='text-sm mt-2 text-red-500'>
-            * You can delete it by clicking on the tag.
-          </p>
+          <SkillForm setValue={setValue} currentSkills={formData.skills} />
           <div className='flex rounded-md py-2 px-4 gap-4 justify-end'>
             <button
               onClick={() => router.back()}
