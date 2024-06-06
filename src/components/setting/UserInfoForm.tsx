@@ -126,6 +126,11 @@ export default function UserInfoForm({ data, userId }: Props) {
         currentSkills={formData.skills}
         fullWidth
       />
+      <label className={labelCommonStyle}>Github URL</label>
+      <input {...register('github')} className={inputCommonStyle} />
+      {errors.github && (
+        <FieldError message={errors.github.message as string} />
+      )}
       <button
         className='p-4 rounded-lg bg-neutral-800 text-white font-bold mt-8 w-full hover:opacity-70 h-16'
         onClick={handleSubmit(onSubmit)}

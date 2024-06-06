@@ -64,6 +64,11 @@ export default {
         },
       ],
     },
+    {
+      title: 'Github',
+      name: 'github',
+      type: 'string',
+    },
   ],
   preview: {
     select: {

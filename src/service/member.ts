@@ -30,6 +30,7 @@ export const addMember = async ({
       _type: 'setting',
     },
     skills: [],
+    github: '',
   };
   return client.createIfNotExists(data);
 };
@@ -39,12 +40,13 @@ export type FullMember = {
   phoneNum: string;
   email: string;
   skills: string[];
-  profile: string;
+  profile?: string;
   googleProfile: string;
+  github?: string;
   setting: {
     title: string;
     subtitle: string;
-    logo: string;
+    logo?: string;
     bgColors: {
       left: string;
       right: string;
@@ -58,6 +60,7 @@ export const getMember = async (userId: string): Promise<FullMember | null> => {
   );
   return {
     ...data,
+    profile: data.profile && urlFor(data.profile),
     setting: {
       ...data.setting,
       logo: !data.setting.logo ? '' : urlFor(data.setting.logo),
@@ -66,10 +69,11 @@ export const getMember = async (userId: string): Promise<FullMember | null> => {
 };
 type FormMember = FullMember & { _id: string };
 export const updateMember = async (data: FormMember, file: File | null) => {
-  const { _id, userName, phoneNum, skills, profile } = data;
+  const { _id, userName, phoneNum, skills, profile, github } = data;
   return client
     .patch(_id)
     .set({
+      _type: 'member',
       profile:
         !profile && !file
           ? ''
@@ -79,13 +83,13 @@ export const updateMember = async (data: FormMember, file: File | null) => {
                 _type: 'reference',
                 _ref: file
                   ? (await client.assets.upload('image', file))._id
-                  : extractAssetIdFromUrl(profile),
+                  : extractAssetIdFromUrl(profile as string),
               },
             },
-      _type: 'member',
       userName,
       phoneNum,
       skills,
+      github,
     })
     .commit();
 };
