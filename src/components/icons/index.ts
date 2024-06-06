@@ -10,3 +10,5 @@ export { default as AlertIcon } from './AlertIcon';
 export { default as PictureIcon } from './PictureIcon';
 export { default as PlusIcon } from './PlusIcon';
 export { default as NoFilterIcon } from './NoFilterIcon';
+export { default as GmailIcon } from './GmailIcon';
+export { default as PhoneIcon } from './PhoneIcon';
