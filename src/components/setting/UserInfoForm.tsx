@@ -60,7 +60,6 @@ export default function UserInfoForm({ data, userId }: Props) {
         setIsLoading(false);
       });
   };
-
   return (
     <section className='rounded-xl bg-white p-8 mt-12 w-full max-w-[660px] z-10'>
       <h3 className='font-bold text-xl'>User Information</h3>
@@ -79,7 +78,7 @@ export default function UserInfoForm({ data, userId }: Props) {
       )}
       <label className={labelCommonStyle}>Phone Number</label>
       <input
-        maxLength={15}
+        maxLength={11}
         {...register('phoneNum', {
           pattern: {
             value: /\d+/,
