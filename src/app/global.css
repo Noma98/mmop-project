@@ -10,25 +10,29 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
-.custom-shape-divider-bottom-1716535680 {
+.custom-shape-divider {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   overflow: hidden;
   line-height: 0;
+}
+.bottom-to-top {
   transform: rotate(180deg);
 }
-
-.custom-shape-divider-bottom-1716535680 svg {
+.top-to-bottom {
+  transform: translateY(95%);
+}
+.custom-shape-divide svg {
   position: relative;
   display: block;
   width: calc(234% + 1.3px);
-  height: 165px;
+  height: 105px;
 }
 
-.custom-shape-divider-bottom-1716535680 .shape-fill {
-  fill: #ffffff;
+.custom-shape-divider .shape-fill {
+  fill: black;
 }
 .rdrDefinedRangesWrapper {
   display: none;

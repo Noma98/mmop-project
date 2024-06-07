@@ -3,7 +3,6 @@
 import React, { MouseEvent, Dispatch, SetStateAction } from 'react';
 
 import Label from '@/components/common/Label';
-import LabelButton from '@/components/common/LabelButton';
 import { FilterIcon } from '@/components/icons';
 import { getLatestYearArray } from '@/utils/filter';
 
@@ -39,40 +38,44 @@ export default function Filter({
   };
 
   return (
-    <section className='flex flex-col items-start p-4 z-10'>
+    <section className='flex flex-col items-start z-10'>
       <div className='flex'>
         <Label
           text=''
-          style='rounded-none rounded-t-md bg-neutral-800'
+          style='rounded-none rounded-t-md bg-black'
           icon={<FilterIcon />}
         />
-        <LabelButton
-          text='Year'
-          style={`rounded-none rounded-t-md ${
-            activeFilter === 'year'
-              ? 'bg-white/70 text-gray-800'
-              : 'bg-[#99d6ea9d] text-white'
-          }`}
+        <button
+          className={`py-2 px-4 bg-neutral-800 text-white font-bold flex gap-1 rounded-none rounded-t-md`}
+          style={{
+            color: activeFilter === 'year' ? 'black' : 'gray',
+            backgroundColor:
+              activeFilter === 'year' ? 'white' : 'rgb(229 229 229)',
+          }}
           onClick={() => setActiveFilter('year')}
-        />
-        <LabelButton
-          text='Type'
-          style={`rounded-none rounded-t-md ${
-            activeFilter === 'type'
-              ? 'bg-white/70 text-gray-800'
-              : 'bg-[#99d6ea9d] text-white'
-          }`}
+        >
+          Year
+        </button>
+        <button
+          className={`py-2 px-4 bg-neutral-800 text-white font-bold flex gap-1 rounded-none rounded-t-md`}
+          style={{
+            color: activeFilter === 'type' ? 'black' : 'gray',
+            backgroundColor:
+              activeFilter === 'type' ? 'white' : 'rgb(229 229 229)',
+          }}
           onClick={() => setActiveFilter('type')}
-        />
+        >
+          Type
+        </button>
       </div>
-      <div className='flex gap-2 rounded-r-xl rounded-b-xl bg-white/70 p-6 shadow-sm min-w-[372px]'>
+      <div className='flex gap-2 rounded-r-xl rounded-b-xl bg-white p-6 min-w-[372px]'>
         {activeFilter === 'year'
           ? yearData.map((year, idx) => (
               <button
                 key={idx}
-                className={`py-1 px-3 border-[1px] border-neutral-300 rounded-full hover:opacity-50 text-sm font-semibold ${
+                className={`py-1 px-3 border-[1px] border-neutral-300 rounded-full hover:bg-point1 text-sm font-semibold ${
                   activeYear == year
-                    ? 'bg-cyan-500 text-white font-bold border-none'
+                    ? 'bg-point3 text-white font-bold border-none'
                     : 'bg-white'
                 }`}
                 onClick={(e) => onClickBtn(e, 'year')}
@@ -83,9 +86,9 @@ export default function Filter({
           : typeData.map((type, idx) => (
               <button
                 key={idx}
-                className={`py-1 px-3 border-[1px] border-neutral-300 rounded-full hover:opacity-50 text-sm font-semibold capitalize ${
+                className={`py-1 px-3 border-[1px] border-neutral-300 rounded-full hover:bg-point1 text-sm font-semibold capitalize ${
                   activeType === type
-                    ? 'bg-cyan-500 text-white font-bold border-none'
+                    ? 'bg-point3 text-white font-bold border-none'
                     : 'bg-white'
                 }`}
                 onClick={(e) => onClickBtn(e, 'type')}

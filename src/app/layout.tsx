@@ -31,8 +31,10 @@ export default function RootLayout({
         <AuthContext>
           <SWRConfigContext>
             <Header />
-            <main className='pt-[70px]'>{children}</main>
-            <Footer />
+            <main className='h-screen flex flex-col justify-between'>
+              {children}
+              <Footer />
+            </main>
           </SWRConfigContext>
         </AuthContext>
       </body>

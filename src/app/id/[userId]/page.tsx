@@ -22,7 +22,7 @@ export default function UserPage({ params: { userId } }: Props) {
           userInfo?.setting?.bgColors?.left || '#DCEFF5'
         }, ${userInfo?.setting?.bgColors?.right || '#DCE5FD'})`,
       }}
-      className={`pb-20 relative pt-10 px-16 min-h-[680px] flex justify-center items-center`}
+      className={`relative flex flex-col justify-center items-center pt-[70px]`}
     >
       <TopBanner {...(userInfo as FullMember)} />
       <AboutMe {...(userInfo as FullMember)} />

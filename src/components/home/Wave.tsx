@@ -1,6 +1,10 @@
-export default function Wave() {
+type Props = {
+  dir?: 'bottom-to-top' | 'top-to-bottom';
+  style?: string;
+};
+export default function Wave({ dir = 'bottom-to-top', style }: Props) {
   return (
-    <div className='custom-shape-divider-bottom-1716535680'>
+    <div className={`custom-shape-divider ${dir} ${style}`}>
       <svg
         data-name='Layer 1'
         xmlns='http://www.w3.org/2000/svg'

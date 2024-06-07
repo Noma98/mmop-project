@@ -95,7 +95,7 @@ export default function Header() {
         {session?.user?.userId === userId && (
           <Link
             href={`/id/${session?.user?.userId}/setting`}
-            className='border-[1px] py-2 px-4 font-bold rounded-md active:bg-neutral-50'
+            className='border-[1px] py-2 px-4 font-bold rounded-full hover:bg-black hover:text-white'
           >
             Setting
           </Link>

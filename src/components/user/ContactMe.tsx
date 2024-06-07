@@ -18,31 +18,34 @@ export default function ContactMe({
   };
 
   return (
-    <section className='w-full h-80 flex flex-col items-center py-40 pb-[500px] bg-[#81b2ef]'>
-      <h2 className='highlight font-bold text-4xl mb-4 highlight-yellow'>
+    <section className='w-full h-80 flex flex-col items-center py-32 pb-[500px] bg-point3'>
+      <h2 className='highlight font-bold text-4xl mb-4 bg-point2 px-2 border-l-[6px] border-orange-300'>
         Contact me!
       </h2>
-      <div className='my-4 border-[1px] p-10 w-[400px] flex flex-col items-start bg-white rounded-xl'>
-        <p className='font-bold mb-4 '>{userName}</p>
-        <p className='text-gray-700 text-sm'>
-          <b className='text-black text-md mr-3'>E-mail </b>
+      <div className='my-4 border-[1px] p-10 w-[440px] flex flex-col items-start bg-white rounded-xl'>
+        <p className='font-bold mb-4 text-xl '>{userName}</p>
+        <p className='text-gray-700 text-md'>
+          <b className='text-black text-lg mr-3'>E-mail </b>
           {email}
         </p>
-        <p className='text-gray-700 text-sm mt-1'>
-          <b className='text-black text-md mr-3'>Phone </b>
+        <p className='text-gray-700 text-md mt-1'>
+          <b className='text-black text-lg mr-3'>Phone </b>
           {phoneNum?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
         </p>
         <div className='flex gap-4 mt-8 ml-auto text-gray-800'>
           {github && (
-            <a href={github}>
+            <a href={github} className='hover:text-point3'>
               <GithubIcon size='8' />
             </a>
           )}
-          <button onClick={() => copyText(email)}>
+          <button onClick={() => copyText(email)} className='hover:text-point3'>
             <GmailIcon />
           </button>
           {phoneNum && (
-            <button onClick={() => copyText(phoneNum)}>
+            <button
+              onClick={() => copyText(phoneNum)}
+              className='hover:text-point3'
+            >
               <PhoneIcon />
             </button>
           )}

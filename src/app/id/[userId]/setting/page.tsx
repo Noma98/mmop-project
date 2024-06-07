@@ -18,11 +18,12 @@ export default function SettingPage() {
   const linkStyle =
     'py-4 border-[1px] rounded-md flex-1 block bg-white font-bold text-center border-black';
   return (
-    <section className='bg-slate-50 flex flex-col items-center p-12'>
+    <section className='bg-slate-50 flex flex-col items-center p-12 pt-[120px]'>
       <div className='flex gap-4 w-full max-w-[660px]'>
         <Link
           href={`/id/${user?.userId}/create`}
-          className={`${linkStyle} bg-black text-white`}
+          className={`${linkStyle} text-white`}
+          style={{ backgroundColor: 'black' }}
         >
           + Register New Project
         </Link>

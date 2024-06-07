@@ -31,7 +31,12 @@ export default function ProjectCard({ data }: Props) {
     type,
   } = data;
   const linkData = [
-    { text: 'Web Link', link: webLink, style: 'bg-red-500', icon: <WebIcon /> },
+    {
+      text: 'Web Link',
+      link: webLink,
+      style: 'bg-red-500',
+      icon: <WebIcon />,
+    },
     {
       text: 'Store Link',
       link: storeLink,
@@ -46,11 +51,11 @@ export default function ProjectCard({ data }: Props) {
     },
   ];
   return (
-    <article className='flex flex-col lg:flex-row p-10 round relative rounded-xl gap-10 shadow-md border-[1px] border-neutral-200 bg-white z-10'>
+    <article className='flex flex-col lg:flex-row p-10 round relative rounded-xl gap-4 md:gap-10 border-neutral-200 bg-white z-10'>
       <Label
         text={type}
         icon={type === 'business' ? <BusinessIcon /> : <GameIcon />}
-        style={`absolute top-[-20px] left-[20px] bg-neutral-800`}
+        style={`absolute top-[-20px] left-[20px] bg-black`}
       />
       <div className={`flex flex-col gap-2 lg:hidden`}>
         <Period startDate={startDate} endDate={endDate} />
@@ -93,7 +98,7 @@ export default function ProjectCard({ data }: Props) {
           )}
         </div>
         <div className='flex gap-2 flex-wrap'>
-          {skills.map((skill, idx) => (
+          {skills?.map((skill, idx) => (
             <span
               key={idx}
               className='py-1 px-2 rounded-lg text-sm bg-neutral-500 text-white font-bold'

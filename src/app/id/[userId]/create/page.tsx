@@ -16,5 +16,9 @@ export default function CreatePage() {
     type: 'business' as 'business' | 'side',
     authorId: '',
   };
-  return <ProjectEditCard data={initData} />;
+  return (
+    <section className='max-w-screen-lg mx-auto pt-[70px]'>
+      <ProjectEditCard data={initData} />
+    </section>
+  );
 }
