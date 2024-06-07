@@ -35,7 +35,7 @@ export const updateSetting = async (data: Setting, file: File | null) => {
                 _type: 'reference',
                 _ref: file
                   ? (await client.assets.upload('image', file))._id
-                  : extractAssetIdFromUrl(logo),
+                  : extractAssetIdFromUrl(logo as string),
               },
             },
       bgColors,

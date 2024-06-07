@@ -66,7 +66,7 @@ export const createProjects = async ({
   files,
 }: ProjectFormData) => {
   const imageAssets = await Promise.all(
-    files.map((file) => client.assets.upload('image', file))
+    files.map((file) => client.assets.upload('image', file as File as File))
   );
   const imageAssetIds = imageAssets.map((imageAsset) => imageAsset._id);
   return client.create({
@@ -108,7 +108,7 @@ export const updateProject = async ({
   files,
 }: ProjectFormData) => {
   const imageAssets = await Promise.all(
-    files.map((file) => client.assets.upload('image', file))
+    files.map((file) => client.assets.upload('image', file as File))
   );
   const existingImgArr = imageUrls.map((url) => {
     const assetId = extractAssetIdFromUrl(url);

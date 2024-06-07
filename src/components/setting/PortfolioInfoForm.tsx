@@ -87,9 +87,9 @@ export default function PortfolioInfoForm({ data, userId }: Props) {
         {data.logo || formData.logoFileBlob ? (
           <Image
             src={
-              formData.logoFileBlob
+              (formData.logoFileBlob
                 ? URL.createObjectURL(formData.logoFileBlob)
-                : data.logo
+                : data.logo) as string
             }
             alt='logo'
             width={160}
