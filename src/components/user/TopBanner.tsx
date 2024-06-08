@@ -10,7 +10,7 @@ export default function TopBanner({ github, userName, setting }: FullMember) {
         <h2 className='text-5xl text-center leading-relaxed'>
           <span className='bg-point3 px-2 rounded-lg'>
             {' '}
-            Hey, I'm {userName?.split(' ')[0] || '000'}
+            Hey, I&apos;m {userName?.split(' ')[0] || '000'}
           </span>
           <br />a frontend developer
         </h2>

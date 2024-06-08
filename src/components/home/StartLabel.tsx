@@ -7,7 +7,7 @@ export default function StartLabel({ user }: Props) {
   return (
     <div className='w-[320px] flex ml-4 mt-4'>
       <div className='p-4 flex-1 outline-none bg-white text-gray-400'>
-        Let's start now (・_・) /*
+        Let&apos;s start now (・_・) /*
       </div>
       <Link
         href={user ? `/id/${user.userId}` : `/api/auth/signin`}

@@ -31,7 +31,7 @@ export default function EditPage({ params: { userId } }: Props) {
             {projects.length === 0 && (
               <div className='flex flex-col items-center p-32'>
                 <p className='text-lg text-gray-700'>
-                  There's no content to edit.
+                  There&apos;s no content to edit.
                 </p>
                 <Link
                   href={`/id/${userId}`}
