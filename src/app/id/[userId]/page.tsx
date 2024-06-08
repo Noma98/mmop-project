@@ -1,33 +1,39 @@
-'use client';
+import { Metadata } from 'next';
 
-import useSWR from 'swr';
-
+import Contents from '@/components/user/Contents';
 import { FullMember } from '@/service/member';
-import AboutMe from '@/components/user/AboutMe';
-import Projects from '@/components/user/Projects';
-import TopBanner from '@/components/user/TopBanner';
-import ContactMe from '@/components/user/ContactMe';
 
 type Props = {
   params: {
     userId: string;
   };
 };
-export default function UserPage({ params: { userId } }: Props) {
-  const { data: userInfo } = useSWR<FullMember>(`/api/member/${userId}`);
-  return (
-    <section
-      style={{
-        background: `linear-gradient(to right, ${
-          userInfo?.setting?.bgColors?.left || '#DCEFF5'
-        }, ${userInfo?.setting?.bgColors?.right || '#DCE5FD'})`,
-      }}
-      className={`relative flex flex-col justify-center items-center pt-[70px]`}
-    >
-      <TopBanner {...(userInfo as FullMember)} />
-      <AboutMe {...(userInfo as FullMember)} />
-      <Projects github={userInfo?.github} userId={userId} />
-      <ContactMe {...(userInfo as FullMember)} />
-    </section>
+
+export async function generateMetadata({
+  params: { userId },
+}: Props): Promise<Metadata> {
+  const userInfo = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/member/${userId}`,
+    {
+      method: 'GET',
+    }
   );
+
+  const {
+    setting: { title, subtitle, logo },
+  } = (await userInfo.json()) as FullMember;
+
+  return {
+    title,
+    description: subtitle,
+    icons: {
+      icon: logo,
+    },
+    openGraph: {
+      images: ['/images/m_logo.png'],
+    },
+  };
+}
+export default function UserPage({ params: { userId } }: Props) {
+  return <Contents userId={userId} />;
 }
