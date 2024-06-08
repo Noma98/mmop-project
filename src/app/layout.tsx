@@ -19,7 +19,14 @@ export const metadata: Metadata = {
     template: '%s | mmop',
   },
   description: 'Portfolio creation web services',
+  icons: {
+    icon: '/image/m_logo.png',
+  },
+  openGraph: {
+    images: ['/image/m_logo.png'],
+  },
 };
+
 export default function RootLayout({
   children,
 }: {
