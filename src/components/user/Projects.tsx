@@ -34,7 +34,8 @@ export default function Projects({ userId, github }: Props) {
 
   useEffect(() => {
     mutate();
-  }, [activeType, activeYear]);
+  }, [activeType, activeYear, mutate]);
+
   return (
     <section className='px-12 py-32 w-full  bg-point2'>
       <div className='max-w-screen-lg flex flex-col items-center mx-auto'>
