@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     icon: '/image/m_logo.png',
   },
   openGraph: {
-    images: ['/image/m_logo.png'],
+    images: ['/image/open_graph.png'],
   },
 };
 

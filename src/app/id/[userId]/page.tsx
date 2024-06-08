@@ -29,9 +29,6 @@ export async function generateMetadata({
     icons: {
       icon: logo,
     },
-    openGraph: {
-      images: ['/images/m_logo.png'],
-    },
   };
 }
 export default function UserPage({ params: { userId } }: Props) {
