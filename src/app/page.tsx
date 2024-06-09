@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 
 import Banner from 'public/image/banner_graphic.png';
 import StartLabel from '@/components/home/StartLabel';
-import Wave from '@/components/home/Wave';
+import Wave from '@/components/common/Wave';
 import authOptions from '@/app/lib/configs/auth';
 
 export default async function HomePage() {

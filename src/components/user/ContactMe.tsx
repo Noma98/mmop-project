@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FullMember } from '@/service/member';
-import Wave from '@/components/home/Wave';
+import Wave from '@/components/common/Wave';
 import { GithubIcon, GmailIcon, PhoneIcon } from '@/components/icons';
 
 export default function ContactMe({
