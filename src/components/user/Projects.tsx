@@ -12,12 +12,9 @@ import ProjectCard from '@/components/user/ProjectCard';
 import Filter from '@/components/user/Filter';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { NoFilterIcon } from '@/components/icons';
+import { FullMember } from '@/service/member';
 
-type Props = {
-  userId: string;
-  github?: string;
-};
-export default function Projects({ userId, github }: Props) {
+export default function Projects({ userId, github, setting }: FullMember) {
   const [activeYear, setActiveYear] = useState('ALL');
   const [activeType, setActiveType] = useState('ALL');
 
@@ -37,7 +34,14 @@ export default function Projects({ userId, github }: Props) {
   }, [activeType, activeYear, mutate]);
 
   return (
-    <section className='px-12 py-32 w-full  bg-point2'>
+    <section
+      className='px-12 py-32 w-full'
+      style={{
+        background: `linear-gradient(to right, ${
+          setting?.bgColors?.left || '#D0E9F7'
+        }, ${setting?.bgColors?.right || '#D0E9F7'})`,
+      }}
+    >
       <div className='max-w-screen-lg flex flex-col items-center mx-auto'>
         <h2 className='highlight text-4xl md:mb-4 mb-12 bg-point3 px-2 font-semibold border-l-[5px] border-orange-300'>
           {`My ${github ? '{dev}' : ''} Projects`}

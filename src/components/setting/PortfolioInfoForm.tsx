@@ -100,7 +100,7 @@ export default function PortfolioInfoForm({ data, userId }: Props) {
           <PictureIcon />
         )}
       </div>
-      <label className={labelCommonStyle}>Background Color</label>
+      <label className={labelCommonStyle}>Projects Background Color</label>
       <BgColorSelector colors={formData.bgColors} setValue={setValue} />
       <button
         className='p-4 rounded-lg bg-neutral-800 text-white font-bold mt-8 w-full hover:opacity-70 h-16'

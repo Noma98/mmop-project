@@ -16,16 +16,11 @@ export default function Contents({ userId }: Props) {
 
   return (
     <section
-      style={{
-        background: `linear-gradient(to right, ${
-          userInfo?.setting?.bgColors?.left || '#DCEFF5'
-        }, ${userInfo?.setting?.bgColors?.right || '#DCE5FD'})`,
-      }}
       className={`relative flex flex-col justify-center items-center pt-[70px]`}
     >
       <TopBanner {...(userInfo as FullMember)} />
       <AboutMe {...(userInfo as FullMember)} />
-      <Projects github={userInfo?.github} userId={userId} />
+      <Projects {...(userInfo as FullMember)} />
       <ContactMe {...(userInfo as FullMember)} />
     </section>
   );
