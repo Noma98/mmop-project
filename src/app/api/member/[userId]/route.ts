@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getMember } from '@/service/member';
+import { sanityService } from '@/service';
 
 type Context = {
   params: {
@@ -8,7 +8,7 @@ type Context = {
   };
 };
 export async function GET(_: NextRequest, context: Context) {
-  return getMember(context.params.userId).then((data) =>
-    NextResponse.json(data)
-  );
+  return sanityService.member
+    .read(context.params.userId)
+    .then((data) => NextResponse.json(data));
 }

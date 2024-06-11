@@ -1,7 +1,6 @@
+import { sanityService } from '@/service';
 import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-
-import { addMember } from '@/service/member';
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -26,7 +25,7 @@ const authOptions: NextAuthOptions = {
       if (!email) {
         return false;
       }
-      await addMember({
+      await sanityService.member.create({
         id,
         userName: name || '',
         userId: email.split('@')[0],

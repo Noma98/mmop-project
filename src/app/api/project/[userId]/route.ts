@@ -1,5 +1,6 @@
-import { getProjects } from '@/service/project';
 import { NextRequest, NextResponse } from 'next/server';
+
+import { sanityService } from '@/service';
 
 type Context = {
   params: {
@@ -11,7 +12,7 @@ export async function GET(req: NextRequest, context: Context) {
   const year = searchParams.get('year') || 'ALL';
   const type = searchParams.get('type') || 'ALL';
 
-  return getProjects(context.params.userId, year, type).then((data) =>
-    NextResponse.json(data)
-  );
+  return sanityService.project
+    .read(context.params.userId, year, type)
+    .then((data) => NextResponse.json(data));
 }

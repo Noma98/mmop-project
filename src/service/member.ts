@@ -1,5 +1,5 @@
-import { client, extractAssetIdFromUrl, urlFor } from './sanity';
-import { addSetting } from './setting';
+import SanityClient from '@/service/sanity';
+import SettingSanity from '@/service/setting';
 
 export type OAuthMember = {
   id: string;
@@ -7,32 +7,6 @@ export type OAuthMember = {
   userId: string;
   email: string;
   image: string;
-};
-export const addMember = async ({
-  id,
-  userId,
-  email,
-  userName,
-  image,
-}: OAuthMember) => {
-  const newSetting = await addSetting(id);
-  const data = {
-    _id: id,
-    _type: 'member',
-    userId,
-    userName,
-    email,
-    phoneNum: '',
-    googleProfile: image,
-    projects: [],
-    setting: {
-      _ref: newSetting._id,
-      _type: 'setting',
-    },
-    skills: [],
-    github: '',
-  };
-  return client.createIfNotExists(data);
 };
 export type FullMember = {
   userId: string;
@@ -54,42 +28,80 @@ export type FullMember = {
     introduction: string;
   };
 };
-export const getMember = async (userId: string): Promise<FullMember | null> => {
-  const data = await client.fetch(
-    `*[_type=="member"&&userId=="${userId}"][0]{...,setting->}`
-  );
-  return {
-    ...data,
-    profile: data.profile && urlFor(data.profile),
-    setting: {
-      ...data.setting,
-      logo: !data.setting.logo ? '' : urlFor(data.setting.logo),
-    },
-  };
-};
 type FormMember = FullMember & { _id: string };
-export const updateMember = async (data: FormMember, file: File | null) => {
-  const { _id, userName, phoneNum, skills, profile, github } = data;
-  return client
-    .patch(_id)
-    .set({
+
+export interface MemberSanityType {
+  create({ id, userId, email, userName, image }: OAuthMember): Promise<any>;
+  read(userId: string): Promise<FullMember | null>;
+  update(data: FormMember, file: File | null): Promise<any>;
+}
+export default class MemberSanity
+  extends SanityClient
+  implements MemberSanityType
+{
+  public create = async ({
+    id,
+    userId,
+    email,
+    userName,
+    image,
+  }: OAuthMember) => {
+    const settingSanity = new SettingSanity();
+    const newSetting = await settingSanity.create(id);
+    const data = {
+      _id: id,
       _type: 'member',
-      profile:
-        !profile && !file
-          ? ''
-          : {
-              _type: 'image',
-              asset: {
-                _type: 'reference',
-                _ref: file
-                  ? (await client.assets.upload('image', file))._id
-                  : extractAssetIdFromUrl(profile as string),
-              },
-            },
+      userId,
       userName,
-      phoneNum,
-      skills,
-      github,
-    })
-    .commit();
-};
+      email,
+      phoneNum: '',
+      googleProfile: image,
+      projects: [],
+      setting: {
+        _ref: newSetting._id,
+        _type: 'setting',
+      },
+      skills: [],
+      github: '',
+    };
+    return this.getClient().createIfNotExists(data);
+  };
+  public read = async (userId: string): Promise<FullMember | null> => {
+    const data = await this.getClient().fetch(
+      `*[_type=="member"&&userId=="${userId}"][0]{...,setting->}`
+    );
+    return {
+      ...data,
+      profile: data.profile && this.urlFor(data.profile),
+      setting: {
+        ...data.setting,
+        logo: !data.setting.logo ? '' : this.urlFor(data.setting.logo),
+      },
+    };
+  };
+  public update = async (data: FormMember, file: File | null) => {
+    const { _id, userName, phoneNum, skills, profile, github } = data;
+    return this.getClient()
+      .patch(_id)
+      .set({
+        _type: 'member',
+        profile:
+          !profile && !file
+            ? ''
+            : {
+                _type: 'image',
+                asset: {
+                  _type: 'reference',
+                  _ref: file
+                    ? (await this.getClient().assets.upload('image', file))._id
+                    : this.extractAssetIdFromUrl(profile as string),
+                },
+              },
+        userName,
+        phoneNum,
+        skills,
+        github,
+      })
+      .commit();
+  };
+}

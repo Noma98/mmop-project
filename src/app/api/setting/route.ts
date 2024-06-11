@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { updateSetting } from '@/service/setting';
 import { withSessionUser } from '@/utils/session';
+import { sanityService } from '@/service';
 
 export async function PUT(req: NextRequest) {
   return withSessionUser(async () => {
@@ -9,7 +9,8 @@ export async function PUT(req: NextRequest) {
     const data = JSON.parse(formData.get('data')?.toString() as string);
     const file = (formData.get('file') as File) || null;
 
-    return updateSetting(data, file)
+    return sanityService.setting
+      .update(data, file)
       .then((res) => NextResponse.json(res))
       .catch((err) => new Response(JSON.stringify(err), { status: 500 }));
   });
