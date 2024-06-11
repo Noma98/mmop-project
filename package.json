@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --watchAll",
+    "test": "jest --watchAll --transformIgnorePatterns \"node_modules/(?!nanoid)/\"",
     "test:cv": "jest --coverage --watchAll",
     "test:ci": "jest --ci"
   },
@@ -18,7 +18,7 @@
     "nanoid": "^5.0.7",
     "next": "14.2.2",
     "next-auth": "^4.24.7",
-    "react": "^18.2.0",
+    "react": "18.2.0",
     "react-color": "^2.19.3",
     "react-date-range": "^2.0.1",
     "react-dom": "^18.2.0",

@@ -19,6 +19,7 @@ class SanityClient implements SanityClientType {
       useCdn: false,
       apiVersion: '2024-05-25',
       token: process.env.SANITY_SECRET_TOKEN,
+      ignoreBrowserTokenWarning: true,
     });
     this.builder = imageUrlBuilder(this.client);
   }
