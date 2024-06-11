@@ -17,7 +17,7 @@ export type FullMember = {
   profile?: string;
   googleProfile: string;
   github?: string;
-  setting: {
+  setting?: {
     title: string;
     subtitle: string;
     logo?: string;
