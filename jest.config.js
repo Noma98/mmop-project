@@ -12,6 +12,9 @@ const customJestConfig = {
   testEnvironment: 'jsdom',
   clearMocks: true,
   setupFiles: ['dotenv/config'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
 };
 dotenv.config({ path: './.env.test' });
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
