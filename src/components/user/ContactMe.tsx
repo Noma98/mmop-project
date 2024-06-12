@@ -38,11 +38,16 @@ export default function ContactMe({
               <GithubIcon size='8' />
             </a>
           )}
-          <button onClick={() => copyText(email)} className='hover:text-point3'>
+          <button
+            aria-label='email'
+            onClick={() => copyText(email)}
+            className='hover:text-point3'
+          >
             <GmailIcon />
           </button>
           {phoneNum && (
             <button
+              aria-label='phone'
               onClick={() => copyText(phoneNum)}
               className='hover:text-point3'
             >

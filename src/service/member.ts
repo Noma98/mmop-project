@@ -10,8 +10,8 @@ export type OAuthMember = {
 };
 export type FullMember = {
   userId: string;
-  userName: string;
-  phoneNum: string;
+  userName?: string;
+  phoneNum?: string;
   email: string;
   skills: string[];
   profile?: string;
