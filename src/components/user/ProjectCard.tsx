@@ -62,20 +62,24 @@ export default function ProjectCard({ data }: Props) {
         <h2 className='text-2xl font-bold'>{title}</h2>
         <p>{description}</p>
       </div>
-      <ImageCarousel>
-        {images.map((v, i) => (
-          <div className='h-[300px] bg-neutral-100 relative' key={i}>
-            <Image
-              src={v}
-              alt={title + ' image'}
-              fill
-              priority={i === 0}
-              sizes='300'
-              className='object-contain'
-            />
-          </div>
-        ))}
-      </ImageCarousel>
+      {images.length === 0 ? (
+        <></>
+      ) : (
+        <ImageCarousel>
+          {images.map((v, i) => (
+            <div className='h-[300px] bg-neutral-100 relative' key={i}>
+              <Image
+                src={v}
+                alt={title + ' image'}
+                fill
+                priority={i === 0}
+                sizes='300'
+                className='object-contain'
+              />
+            </div>
+          ))}
+        </ImageCarousel>
+      )}
       <div className='flex flex-col gap-2 flex-1'>
         <div className={`hidden flex-col gap-2 lg:flex`}>
           <Period startDate={startDate} endDate={endDate} />
