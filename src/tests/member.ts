@@ -1,3 +1,11 @@
+export const testOAuthMember = {
+  id: 'test1234',
+  userName: 'testName',
+  userId: 'testId',
+  email: 'testId@gmail.com',
+  image: 'https://image.com',
+};
+
 export const testMember = {
   userId: 'testId',
   userName: 'testName',

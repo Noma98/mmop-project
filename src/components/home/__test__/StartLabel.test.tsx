@@ -1,5 +1,7 @@
-import StartLabel from '../StartLabel';
 import { render, screen } from '@testing-library/react';
+
+import { testOAuthMember } from '@/tests/member';
+import StartLabel from '@/components/home/StartLabel';
 
 describe('StartLabel', () => {
   it('renders correctly without user', () => {
@@ -9,12 +11,12 @@ describe('StartLabel', () => {
     expect(linkElement).toHaveAttribute('href', '/api/auth/signin');
   });
   it('renders correctly with user', () => {
-    const testUser = {
-      userId: 'test',
-    };
-    render(<StartLabel user={testUser} />);
+    render(<StartLabel user={testOAuthMember} />);
     expect(screen.getByText("Let's start now (・_-)/☼✧")).toBeInTheDocument();
     const linkElement = screen.getByRole('link');
-    expect(linkElement).toHaveAttribute('href', `/id/${testUser.userId}`);
+    expect(linkElement).toHaveAttribute(
+      'href',
+      `/id/${testOAuthMember.userId}`
+    );
   });
 });
