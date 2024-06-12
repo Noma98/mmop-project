@@ -1,7 +1,5 @@
-import React from 'react';
-import GithubCalendar from 'react-github-calendar';
-
 import { FullMember } from '@/service/member';
+import GithubOverview from '@/components/user/GithubOverview';
 
 export default function TopBanner({ github, userName, setting }: FullMember) {
   return (
@@ -9,7 +7,6 @@ export default function TopBanner({ github, userName, setting }: FullMember) {
       <div className='max-w-screen-md mx-auto px-12'>
         <h2 className='text-5xl text-center leading-relaxed'>
           <span className='bg-point3 px-2 rounded-lg'>
-            {' '}
             Hey, I&apos;m {userName?.split(' ')[0] || '000'}
           </span>
           <br />a frontend developer
@@ -17,12 +14,7 @@ export default function TopBanner({ github, userName, setting }: FullMember) {
         <p className='leading-relaxed whitespace-pre-wrap mt-10'>
           {setting?.subtitle}
         </p>
-        {github && (
-          <GithubCalendar
-            username={github?.split('@')[0]}
-            style={{ marginTop: 68 }}
-          />
-        )}
+        {github && <GithubOverview username={github?.split('@')[0]} />}
       </div>
     </section>
   );
