@@ -11,7 +11,7 @@ export default function TopBanner({ github, userName, setting }: FullMember) {
           </span>
           <br />a frontend developer
         </h2>
-        <p className='leading-relaxed whitespace-pre-wrap mt-10'>
+        <p className='leading-relaxed whitespace-pre-wrap mt-10 text-lg text-neutral-700'>
           {setting?.subtitle}
         </p>
         {github && <GithubOverview username={github?.split('@')[0]} />}

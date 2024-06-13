@@ -12,3 +12,4 @@ export { default as PlusIcon } from './PlusIcon';
 export { default as NoFilterIcon } from './NoFilterIcon';
 export { default as GmailIcon } from './GmailIcon';
 export { default as PhoneIcon } from './PhoneIcon';
+export { default as InvisibleIcon } from './InvisibleIcon';
