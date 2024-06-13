@@ -1,29 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import GithubCalendar from 'react-github-calendar';
 
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { InvisibleIcon } from '@/components/icons';
+import useCheckValidGithub from '@/hooks/useCheckValidGithub';
 
 type Props = {
   username: string;
 };
 function GithubOverview({ username }: Props) {
-  const [isValid, setIsValid] = useState<boolean | undefined>(undefined);
-  const validateUser = async () => {
-    const res = await fetch(
-      `https://github-contributions-api.jogruber.de/v4/${username}?y=last`
-    );
-    if (res.ok) {
-      setIsValid(true);
-    }
-    setIsValid(false);
-  };
-
-  useEffect(() => {
-    validateUser();
-  }, [username]);
+  const { isValid } = useCheckValidGithub({ username });
 
   return (
     <>
