@@ -3,16 +3,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import { useState } from 'react';
 
 import NoContent from 'public/image/no_content.png';
-import { Project } from '@/service/project';
 import ProjectCard from '@/components/user/ProjectCard';
 import Filter from '@/components/user/Filter';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { NoFilterIcon } from '@/components/icons';
 import { FullMember } from '@/service/member';
+import useProjects from '@/hooks/useProjects';
 
 export default function Projects({ userId, github, setting }: FullMember) {
   const [activeYear, setActiveYear] = useState('ALL');
@@ -21,17 +20,13 @@ export default function Projects({ userId, github, setting }: FullMember) {
   const session = useSession();
   const user = session.data?.user;
   const [activeFilter, setActiveFilter] = useState('year');
-  const {
-    data: projects,
-    isLoading,
-    mutate,
-  } = useSWR<Project[]>(
-    `/api/project/${userId}?year=${activeYear}&type=${activeType}`
-  );
+  const { projects, isLoading } = useProjects({
+    activeType,
+    activeYear,
+    userId,
+  });
 
-  useEffect(() => {
-    mutate();
-  }, [activeType, activeYear, mutate]);
+  const createPageLink = () => `/id/${userId}/create`;
 
   return (
     <section
@@ -72,7 +67,7 @@ export default function Projects({ userId, github, setting }: FullMember) {
                   </p>
                   {user?.userId === userId && (
                     <Link
-                      href={`/id/${userId}/create`}
+                      href={createPageLink()}
                       className='mt-8 inline-block py-4 px-8 bg-blue-600 text-white font-bold rounded-md'
                     >{`Start now ->`}</Link>
                   )}
