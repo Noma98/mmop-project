@@ -1,26 +1,16 @@
 'use client';
 
-import useSWR from 'swr';
 import Image from 'next/image';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import { usePathname, useRouter } from 'next/navigation';
+import { signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import LogoImg from 'public/image/logo.png';
-import { FullMember } from '@/service/member';
+import useUserInfoByCurrentUrl from '@/hooks/useUserInfoByCurrentUrl';
 
 export default function Header() {
-  const { data: session } = useSession();
   const router = useRouter();
-
-  const pathname = usePathname();
-  const [userId, setUserId] = useState('');
-  const { data } = useSWR<FullMember>(userId ? `/api/member/${userId}` : null);
-
-  useEffect(() => {
-    setUserId(pathname === '/' ? '' : pathname.slice(4).split('/')[0]);
-  }, [pathname]);
+  const { session, userId, data } = useUserInfoByCurrentUrl();
 
   const onSignIn = () => {
     signIn();
@@ -41,7 +31,7 @@ export default function Header() {
             href={`/id/${userId}`}
             className='cursor-pointer flex items-center gap-2'
           >
-            {data.setting.logo && (
+            {data.setting?.logo && (
               <Image
                 alt='logo'
                 src={data.setting.logo}
@@ -52,8 +42,8 @@ export default function Header() {
               />
             )}
             <h1 className='font-extrabold text-xl'>
-              {data.setting.title ||
-                (!data.setting.logo && `${userId}'s portfolio`)}
+              {data.setting?.title ||
+                (!data.setting?.logo && `${userId}'s portfolio`)}
             </h1>
           </Link>
         ) : (

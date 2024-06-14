@@ -1,11 +1,10 @@
 'use client';
 
-import useSWR from 'swr';
 import Link from 'next/link';
 
-import { Project } from '@/service/project';
 import ProjectEditCard from '@/components/edit/ProjectEditCard';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import useProjectDetail from '@/hooks/useProjectDetail';
 
 type Props = {
   params: {
@@ -13,9 +12,7 @@ type Props = {
   };
 };
 export default function EditPage({ params: { userId } }: Props) {
-  const { data: projects, isLoading } = useSWR<Project[]>(
-    `/api/project/${userId}`
-  );
+  const { projects, isLoading } = useProjectDetail({ userId });
 
   return (
     <section className='bg-gradient-to-r from-[#C9E8F2] to-blue-100 pb-20 relative pt-[70px] min-h-screen overflow-scroll'>
