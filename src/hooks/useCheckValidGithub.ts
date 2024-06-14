@@ -18,7 +18,7 @@ export default function useCheckValidGithub({ username }: Props) {
 
   useEffect(() => {
     validateUser();
-  }, [username]);
+  }, [username, validateUser]);
 
   return { isValid };
 }
