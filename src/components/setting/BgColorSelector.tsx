@@ -6,7 +6,7 @@ import { UseFormSetValue } from 'react-hook-form';
 import ColorPicker from '@/components/setting/ColorPicker';
 
 type Props = {
-  colors: {
+  colors?: {
     left: string;
     right: string;
   };
@@ -14,8 +14,8 @@ type Props = {
 };
 
 export default function BgColorSelector({ colors, setValue }: Props) {
-  const [left, setLeft] = useState(colors.left);
-  const [right, setRight] = useState(colors.right);
+  const [left, setLeft] = useState(colors?.left);
+  const [right, setRight] = useState(colors?.right);
 
   const onChange = (color: string, direction: 'left' | 'right') => {
     if (direction === 'left') {
@@ -38,13 +38,13 @@ export default function BgColorSelector({ colors, setValue }: Props) {
         <ColorPicker
           onChange={onChange}
           onChangeComplete={onChangeComplete}
-          color={left}
+          color={left || '#D0E9F7'}
           direction='left'
         />
         <ColorPicker
           onChange={onChange}
           onChangeComplete={onChangeComplete}
-          color={right}
+          color={right || '#D0E9F7'}
           direction='right'
         />
       </div>
