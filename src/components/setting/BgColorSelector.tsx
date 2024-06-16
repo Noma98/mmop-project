@@ -38,13 +38,13 @@ export default function BgColorSelector({ colors, setValue }: Props) {
         <ColorPicker
           onChange={onChange}
           onChangeComplete={onChangeComplete}
-          color={left || '#D0E9F7'}
+          color={left as string}
           direction='left'
         />
         <ColorPicker
           onChange={onChange}
           onChangeComplete={onChangeComplete}
-          color={right || '#D0E9F7'}
+          color={right as string}
           direction='right'
         />
       </div>

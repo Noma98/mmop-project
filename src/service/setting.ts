@@ -18,8 +18,8 @@ export default class SettingSanity
       subtitle: '',
       introduction: '',
       bgColors: {
-        left: '#C9E8F2',
-        right: '#DBEAFE',
+        left: '#D0E9F7',
+        right: '#D0E9F7',
       },
     });
   };

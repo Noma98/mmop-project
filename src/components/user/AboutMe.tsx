@@ -27,19 +27,25 @@ export default function AboutMe({
           <article className='flex-1 md:ml-12 md:pl-12 md:border-l-[1px]'>
             {setting ? (
               <>
-                <p className='whitespace-pre-wrap'>{setting?.introduction}</p>
+                <p className='whitespace-pre-wrap'>
+                  {setting?.introduction || "There's no content..."}
+                </p>
                 <h4 className='font-bold text-xl bg-base inline-block mt-8 px-2'>
                   Skills
                 </h4>
                 <ul className='flex gap-2 flex-wrap items-center mt-4'>
-                  {skills?.map((skill) => (
-                    <li
-                      key={skill}
-                      className='py-1 px-2 rounded-lg text-sm bg-neutral-500 text-white font-bold hover:scale-105 hover:bg-blue-400 transition-all duration-100'
-                    >
-                      {skill}
-                    </li>
-                  ))}
+                  {skills.length === 0 ? (
+                    <p>There&apos;s no content...</p>
+                  ) : (
+                    skills?.map((skill) => (
+                      <li
+                        key={skill}
+                        className='py-1 px-2 rounded-lg text-sm bg-neutral-500 text-white font-bold hover:scale-105 hover:bg-blue-400 transition-all duration-100'
+                      >
+                        {skill}
+                      </li>
+                    ))
+                  )}
                 </ul>
               </>
             ) : (

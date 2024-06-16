@@ -30,7 +30,10 @@ export default function ContactMe({
         </p>
         <p className='text-gray-700 text-md mt-1'>
           <b className='text-black text-lg mr-3'>Phone </b>
-          {phoneNum?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}
+          {(phoneNum || '01000000000')?.replace(
+            /(\d{3})(\d{4})(\d{4})/,
+            '$1-$2-$3'
+          )}
         </p>
         <div className='flex gap-4 mt-8 ml-auto text-gray-800'>
           {github && (

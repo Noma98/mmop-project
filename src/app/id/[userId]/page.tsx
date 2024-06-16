@@ -18,16 +18,15 @@ export async function generateMetadata({
       method: 'GET',
     }
   );
-
   const {
     setting: { title, subtitle, logo },
   } = (await userInfo.json()) as FullMember;
 
   return {
-    title,
-    description: subtitle,
+    title: title || `${userId}'s portfolio`,
+    description: subtitle || `${userId}'s portfolio`,
     icons: {
-      icon: logo,
+      icon: logo || '/image/m_logo.png',
     },
   };
 }

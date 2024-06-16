@@ -32,9 +32,7 @@ export default function Projects({ userId, github, setting }: FullMember) {
     <section
       className='px-12 py-32 w-full'
       style={{
-        background: `linear-gradient(to right, ${
-          setting?.bgColors?.left || '#D0E9F7'
-        }, ${setting?.bgColors?.right || '#D0E9F7'})`,
+        background: `linear-gradient(to right, ${setting?.bgColors?.left}, ${setting?.bgColors?.right})`,
       }}
     >
       <div className='max-w-screen-lg flex flex-col items-center mx-auto'>
