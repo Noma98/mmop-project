@@ -39,12 +39,14 @@ export default function Projects({ userId, github, setting }: FullMember) {
         <h2 className='highlight text-4xl md:mb-4 mb-12 bg-point3 px-2 font-semibold border-l-[5px] border-orange-300'>
           {`My ${github ? '{dev}' : ''} Projects`}
         </h2>
-        <p className='text-center mt-4 mb-12 text-lg'>
-          <span className='font-bold bg-white px-1'>Business</span> is a project
-          that I worked for a company, and
-          <span className='font-bold bg-white px-1 ml-1'>side</span> is a
-          project that I personally did for study purposes.
-        </p>
+        {projects?.length !== 0 && (
+          <p className='text-center mt-4 mb-12 text-lg'>
+            <span className='font-bold bg-white px-1'>Business</span> is a
+            project that I worked for a company, and
+            <span className='font-bold bg-white px-1 ml-1'>side</span> is a
+            project that I personally did for study purposes.
+          </p>
+        )}
         {isLoading && <LoadingSpinner />}
         {projects && (
           <div className='flex flex-col gap-12 w-full'>
@@ -61,7 +63,7 @@ export default function Projects({ userId, github, setting }: FullMember) {
                   <p>
                     {user?.userId === userId
                       ? `You don't have any contents.\nRegister your first project!`
-                      : 'No contents'}
+                      : 'No contents...'}
                   </p>
                   {user?.userId === userId && (
                     <Link

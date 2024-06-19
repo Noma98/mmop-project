@@ -289,7 +289,7 @@ export default function ProjectEditCard({ data }: Props) {
               + Add achievement
             </button>
             <h3 className='font-bold mb-2 mt-4'>Images</h3>
-            <div className='flex gap-2'>
+            <div className='flex gap-2 flex-wrap'>
               <ImageViewer
                 images={formData.imageUrls}
                 setImages={updateImageUrls}
