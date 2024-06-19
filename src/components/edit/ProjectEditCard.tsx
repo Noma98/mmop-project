@@ -117,8 +117,8 @@ export default function ProjectEditCard({ data }: Props) {
       body: JSON.stringify({ id }),
     })
       .then(() => {
+        mutate(`/api/project/${user?.userId}?year=ALL&type=ALL`);
         alert('Deleted successfully.');
-        mutate(`/api/project/${user?.userId}`);
       })
       .catch(() => alert(`ERROR has occurred.\nPlease try again in a moment.`))
       .finally(() => setIsLoading(false));
@@ -136,7 +136,7 @@ export default function ProjectEditCard({ data }: Props) {
       body: formDataToBeSubmitted,
     })
       .then(() => {
-        mutate(`/api/project/${user?.userId}`);
+        mutate(`/api/project/${user?.userId}?year=ALL&type=ALL`);
         if (id) {
           alert('Modified successfully.');
         } else {
