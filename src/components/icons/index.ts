@@ -13,3 +13,4 @@ export { default as NoFilterIcon } from './NoFilterIcon';
 export { default as GmailIcon } from './GmailIcon';
 export { default as PhoneIcon } from './PhoneIcon';
 export { default as InvisibleIcon } from './InvisibleIcon';
+export { default as ChevronUpIcon } from './ChevronUpIcon';
