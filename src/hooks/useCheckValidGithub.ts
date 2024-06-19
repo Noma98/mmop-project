@@ -12,6 +12,7 @@ export default function useCheckValidGithub({ username }: Props) {
     );
     if (res.ok) {
       setIsValid(true);
+      return;
     }
     setIsValid(false);
   };
