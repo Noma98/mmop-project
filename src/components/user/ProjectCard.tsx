@@ -5,6 +5,7 @@ import {
   BusinessIcon,
   GameIcon,
   GithubIcon,
+  NoImageIcon,
   StoreIcon,
   WebIcon,
 } from '@/components/icons';
@@ -63,11 +64,14 @@ export default function ProjectCard({ data }: Props) {
         <p>{description}</p>
       </div>
       {images.length === 0 ? (
-        <></>
+        <div className='bg-neutral-50 flex-1 rounded-lg border-[1px] flex flex-col justify-center items-center text-neutral-600 gap-4'>
+          <NoImageIcon />
+          <p>No Image</p>
+        </div>
       ) : (
         <ImageCarousel>
           {images.map((v, i) => (
-            <div className='h-[300px] bg-neutral-100 relative' key={i}>
+            <div className='h-[300px] bg-neutral-50 relative' key={i}>
               <Image
                 src={v}
                 alt={title + ' image'}
