@@ -15,11 +15,11 @@ import useProjects from '@/hooks/useProjects';
 
 export default function Projects({ userId, github, setting }: FullMember) {
   const [activeYear, setActiveYear] = useState('ALL');
-  const [activeType, setActiveType] = useState('ALL');
+  const [activeType, setActiveType] = useState('business');
 
   const session = useSession();
   const user = session.data?.user;
-  const [activeFilter, setActiveFilter] = useState('year');
+  const [activeFilter, setActiveFilter] = useState('type');
   const { projects, isLoading } = useProjects({
     activeType,
     activeYear,
@@ -50,7 +50,7 @@ export default function Projects({ userId, github, setting }: FullMember) {
         {isLoading && <LoadingSpinner />}
         {projects && (
           <div className='flex flex-col gap-12 w-full'>
-            {projects.length === 0 ? (
+            {projects?.length === 0 ? (
               activeType === 'ALL' && activeYear === 'ALL' ? (
                 <div className='text-neutral-500 pb-12 w-full inline-block whitespace-pre-wrap text-center text-lg flex-col items-center'>
                   <Image
@@ -98,7 +98,7 @@ export default function Projects({ userId, github, setting }: FullMember) {
                   activeFilter={activeFilter}
                   setActiveFilter={setActiveFilter}
                 />
-                {projects.map((project, idx) => (
+                {projects?.map((project, idx) => (
                   <ProjectCard key={idx} data={project} />
                 ))}
               </>
