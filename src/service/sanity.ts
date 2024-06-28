@@ -17,9 +17,9 @@ class SanityClient implements SanityClientType {
       projectId: process.env.SANITY_PROJECT_ID,
       dataset: process.env.SANITY_DATASET,
       useCdn: false,
-      apiVersion: '2024-05-25',
       token: process.env.SANITY_SECRET_TOKEN,
       ignoreBrowserTokenWarning: true,
+      apiVersion: new Date().toISOString().split('T')[0],
     });
     this.builder = imageUrlBuilder(this.client);
   }
