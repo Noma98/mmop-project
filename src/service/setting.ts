@@ -12,7 +12,7 @@ export default class SettingSanity
 {
   create = (id: string) => {
     return this.getClient().createIfNotExists({
-      _id: id,
+      _id: id + 'ST',
       _type: 'setting',
       title: '',
       subtitle: '',
