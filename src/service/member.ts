@@ -70,14 +70,29 @@ export default class MemberSanity
     const data = await this.getClient().fetch(
       `*[_type=="member"&&userId=="${userId}"][0]{...,setting->}`
     );
-    return {
-      ...data,
-      profile: data.profile && this.urlFor(data.profile),
-      setting: {
-        ...data.setting,
-        logo: !data.setting.logo ? '' : this.urlFor(data.setting.logo),
-      },
-    };
+    return data
+      ? {
+          ...data,
+          profile: data.profile && this.urlFor(data.profile),
+          setting: {
+            ...data.setting,
+            logo: !data.setting.logo ? '' : this.urlFor(data.setting.logo),
+          },
+        }
+      : {
+          email: `${userId}@gmail.com`,
+          github: '',
+          googleProfile: '',
+          phoneNum: '',
+          skills: [],
+          userId,
+          userName: '',
+          setting: {
+            subtitle: '',
+            title: '',
+            introduction: '',
+          },
+        };
   };
   public update = async (data: FormMember, file: File | null) => {
     const { _id, userName, phoneNum, skills, profile, github } = data;
