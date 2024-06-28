@@ -34,7 +34,7 @@ export default function ProjectEditCard({ data }: Props) {
   const { data: session } = useSession();
   const user = session?.user;
   const router = useRouter();
-  const { mutate } = useSWRConfig();
+  const { cache } = useSWRConfig();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -117,7 +117,10 @@ export default function ProjectEditCard({ data }: Props) {
       body: JSON.stringify({ id }),
     })
       .then(() => {
-        mutate(`/api/project/${user?.userId}?year=ALL&type=ALL`);
+        //@ts-ignore
+        for (const key of cache.keys()) {
+          cache.delete(key);
+        }
         alert('Deleted successfully.');
       })
       .catch(() => alert(`ERROR has occurred.\nPlease try again in a moment.`))
@@ -136,7 +139,11 @@ export default function ProjectEditCard({ data }: Props) {
       body: formDataToBeSubmitted,
     })
       .then(() => {
-        mutate(`/api/project/${user?.userId}?year=ALL&type=ALL`);
+        //@ts-ignore
+        for (const key of cache.keys()) {
+          cache.delete(key);
+        }
+
         if (id) {
           alert('Modified successfully.');
         } else {
