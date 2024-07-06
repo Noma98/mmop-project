@@ -24,7 +24,7 @@ export default function AboutMe({
             alt='profile'
             className='rounded-full shadow-md object-contain md:w-80 md:h-80'
           />
-          <article className='flex-1 md:ml-12 md:pl-12 md:border-l-[1px]'>
+          <article className='flex-1 md:ml-12 md:pl-12 md:border-l-[1px] mt-8 text-sm'>
             {setting ? (
               <>
                 <p className='whitespace-pre-wrap'>
